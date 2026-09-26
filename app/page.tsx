@@ -20,7 +20,23 @@ export default function Home() {
 
   return (
     <main className="relative z-[1] mx-auto flex min-h-dvh w-full max-w-[820px] flex-col px-4 py-10 md:justify-center">
-      <motion.header {...enter(0)} className="mb-8 flex flex-wrap items-end justify-between gap-4">
+      <motion.div
+        {...enter(0)}
+        role="note"
+        className="mb-6 flex items-start gap-2.5 rounded-2xl bg-[var(--accent-soft)] px-4 py-3 text-[13px] leading-relaxed text-[var(--text-2)] shadow-[inset_0_0_0_1px_rgb(255_154_60/0.18)]"
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden className="mt-0.5 shrink-0 text-[var(--accent)]">
+          <circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" strokeWidth="1.4" />
+          <path d="M8 7.2v4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+          <circle cx="8" cy="4.9" r="0.9" fill="currentColor" />
+        </svg>
+        <p>
+          <span className="font-medium text-[var(--text)]">Jev won&rsquo;t always win.</span> This is a demo of its
+          capabilities: fast, typed decisions with visible confidence. It isn&rsquo;t a tuned 2048 solver.
+        </p>
+      </motion.div>
+
+      <motion.header {...enter(1)} className="mb-8 flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-[28px] font-semibold leading-none tracking-[-0.03em]">
             Jev plays <span className="text-[var(--accent)]">2048</span>
@@ -33,7 +49,7 @@ export default function Home() {
       </motion.header>
 
       <div className="flex flex-col items-center gap-5 md:flex-row md:items-start md:justify-between">
-        <motion.div {...enter(1)} className="flex w-[var(--board)] flex-col gap-4">
+        <motion.div {...enter(2)} className="flex w-[var(--board)] flex-col gap-4">
           <Board game={g.game} idle={g.status === "idle"} fast={g.speed === "max"}>
             <StartOverlay show={g.status === "idle"} onStart={g.start} />
             <EndOverlay
@@ -47,7 +63,7 @@ export default function Home() {
           <Controls speed={g.speed} onSpeed={g.setSpeed} status={g.status} onTogglePause={g.togglePause} />
         </motion.div>
 
-        <motion.div {...enter(2)} className="flex w-full justify-center md:w-auto">
+        <motion.div {...enter(3)} className="flex w-full justify-center md:w-auto">
           <JevPanel
             decision={g.decision}
             thinking={g.thinking}
